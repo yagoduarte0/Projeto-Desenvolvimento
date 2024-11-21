@@ -1,0 +1,397 @@
+#body-principal {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 20px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    
+}
+
+header img {
+    width: 75px;
+    height: 80px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-family: "Gothic A1", sans-serif;
+    font-weight: 900;
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header li {
+    margin-right: 10px;
+}
+
+header #logout {
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: none;
+    margin-left: auto;
+    margin: 0;
+    transition: background-color 0.3s ease;
+    font-family: "Gothic A1", sans-serif;
+}
+
+header #logout:hover {
+    background-color: #c0392b;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#container > article {
+    width: 15rem;
+    font-size: 12px;
+    font-family: "Gothic A1", sans-serif;
+    border: solid #ddd 1px;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+#container > article:hover {
+    transform: scale(1.05);
+}
+
+#container > article img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center 20% top;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+#container > article button {
+    background-color: #000000;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "Gothic A1", sans-serif;
+}
+
+@media (max-width: 768px) {
+    #container {
+        display: grid;
+        grid-template-columns: repeat(1fr);
+        gap: 1rem;
+        max-width: 100%;
+        margin: 0 auto;
+    } 
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    #container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        max-width: 100%;
+        margin: 0 auto;
+    }  
+}
+
+@media (min-width: 1025px) and (max-width: 1300px) {
+    #container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1301px) {
+    #container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+#login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    color: #000;
+    height: 100vh;
+    padding: 0 1rem;
+    font-family: "Gothic A1", sans-serif;
+}
+
+#login-page {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#login-page h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#login-page p {
+    font-size: 1rem;
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+#login-form {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    background-color: #000;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#login-form input {
+    padding: 0.8em;
+    margin: 0.8em 0;
+    width: 93%;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: "Gothic A1", sans-serif;
+}
+
+#login-form input:focus {
+    border-color: #444;
+    outline: none;
+}
+
+#login-form p {
+    color: #fff;
+}
+
+#login-form button {
+    background-color: #fff;
+    border-radius: 8px;
+    border: none;
+    color: #000;
+    margin-top: 15px;
+    padding: 0.8em;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    font-family: "Gothic A1", sans-serif;
+}
+
+#login-form button:hover {
+    background-color: #ccc;
+}
+
+#jogadores {
+    display: none;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+#jogadores h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-family: "Gothic A1", sans-serif;
+}
+
+#jogadores ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#jogadores button {
+    background-color: #000;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    padding: 0.8em;
+    margin: 0.8em 0;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    font-family: "Gothic A1", sans-serif;
+}
+
+#jogadores button:hover {
+    background-color: #444;
+}
+
+#jogadores input {
+    padding: 0.8em;
+    margin: 0.8em 0;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    width: 40%;
+    font-family: "Gothic A1", sans-serif;
+}
+
+#detalhes-body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 900px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-jogador {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-weight: bold;
+}
+
+.nome-jogador {
+    text-align: center;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-family: "Gothic A1", sans-serif;
+}
+
+.imagem-jogador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    object-fit: cover;
+    position: relative;
+    padding: 10px;
+    width: 60%;
+    margin: 10px;
+    max-width: 90%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: "Gothic A1", sans-serif;
+}
+
+.jogos-jogador,
+.elenco-jogador,
+.time-jogador,
+.posicao-jogador,
+.altura-jogador,
+.naturalidade-jogador,
+.nascimento-jogador,
+.detalhes-jogador {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: "Gothic A1", sans-serif;
+    color: #ffffff;
+}
+
+.jogos-jogador:hover,
+.elenco-jogador:hover,
+.time-jogador:hover,
+.posicao-jogador:hover,
+.altura-jogador:hover,
+.naturalidade-jogador:hover,
+.nascimento-jogador:hover,
+.detalhes-jogador:hover {
+    background-color: #555555;
+    transform: translateY(-5px);
+}
+
+.botao-voltar {
+    background-color: #e74c3c;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    margin-top: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.botao-voltar:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.icone {
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
