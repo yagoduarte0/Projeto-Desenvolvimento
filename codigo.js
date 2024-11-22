@@ -1,4 +1,4 @@
-const url = "https://botafogo-atletas.mange.li/2024-1/";
+const url = "https://botafogo-atletas.mange.li/2024-1/masculino/";
 const fem = "https://botafogo-atletas.mange.li/2024-1/feminino/";
 const todes = "https://botafogo-atletas.mange.li/2024-1/all/";
 
@@ -94,39 +94,61 @@ const pesquisaJogadores = (todosJogadores) => {
     });
 };
 
-const rotaGenero = (jogadoresMasculinos, jogadorasFemininas) => {
+const rotaGenero = () => {
+    // Configurando botão de elenco completo
     todos.onclick = async () => {
         try {
-            const todosJogadores = await pega_json(`${url}all`);
-            container.innerHTML = "";
+            const todosJogadores = await pega_json(todes);
             mostrarJogadores(todosJogadores);
         } catch (err) {
             console.error("Erro ao carregar todos os jogadores:", err);
             container.innerHTML = '<p>Erro ao carregar jogadores.</p>';
         }
     };
+
+    // Configurando botão de jogadores masculinos
     masculino.onclick = async () => {
         try {
-            const jogadoresMasculinos = await pega_json(`${url}masculino`);
-            container.innerHTML = "";
+            const jogadoresMasculinos = await pega_json(url);
             mostrarJogadores(jogadoresMasculinos);
         } catch (err) {
             console.error("Erro ao carregar jogadores masculinos:", err);
-            container.innerHTML = '<p>Erro ao carregar jogadores.</p>';
+            container.innerHTML = '<p>Erro ao carregar jogadores masculinos.</p>';
         }
     };
+
+    // Configurando botão de jogadoras femininas
     feminino.onclick = async () => {
         try {
-            const jogadorasFemininas = await pega_json(`${url}feminino`);
-            container.innerHTML = "";
+            const jogadorasFemininas = await pega_json(fem);
             mostrarJogadores(jogadorasFemininas);
         } catch (err) {
             console.error("Erro ao carregar jogadoras femininas:", err);
-            container.innerHTML = '<p>Erro ao carregar jogadores.</p>';
+            container.innerHTML = '<p>Erro ao carregar jogadoras femininas.</p>';
         }
     };
-    
 };
+
+const carregarPorDropdown = async (event) => {
+    const valorSelecionado = event.target.value;
+
+    try {
+        if (valorSelecionado === "todos") {
+            const todosJogadores = await pega_json(todes);
+            mostrarJogadores(todosJogadores);
+        } else if (valorSelecionado === "masculino") {
+            const jogadoresMasculinos = await pega_json(url);
+            mostrarJogadores(jogadoresMasculinos);
+        } else if (valorSelecionado === "feminino") {
+            const jogadorasFemininas = await pega_json(fem);
+            mostrarJogadores(jogadorasFemininas);
+        }
+    } catch (err) {
+        console.error(`Erro ao carregar jogadores (${valorSelecionado}):`, err);
+        container.innerHTML = '<p>Erro ao carregar jogadores.</p>';
+    }
+};
+document.getElementById("menu-dropdown").addEventListener("change", carregarPorDropdown);
 
 const verificaLogin = () => {
     const logado = localStorage.getItem("logado");
@@ -148,16 +170,33 @@ const verificaLogin = () => {
     }
 };
 
-const manipulaBotao = () => {
+const gerarHashSHA256 = async (texto) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(texto);
+
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+
+    return hashHex;
+};
+
+const manipulaBotao = async () => {
     const texto = document.getElementById("senha").value;
 
-    if (hex_md5(texto) === "841775103f2d2eb0e244728e8efa7905") {
+    const hash = await gerarHashSHA256(texto);
+
+    if (hash === "d823c845c2362679c4bfe95ba033312525732a94bfd34ccfd179d7abae42d9b8") {
         localStorage.setItem("logado", "sim");
         verificaLogin();
     } else {
         alert("Senha Incorreta!");
     }
 };
+
+document.getElementById("botao").onclick = manipulaBotao;
+
 
 document.getElementById("logout").onclick = () => {
     localStorage.removeItem("logado");
@@ -168,18 +207,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     verificaLogin();
 
     try {
-        // Carrega todas as listas
-        const todosJogadores = await pega_json(`${url}all`);
-        const jogadoresMasculinos = await pega_json(`${url}masculino`);
-        const jogadorasFemininas = await pega_json(`${url}feminino`);
+        const todosJogadores = await pega_json(todes);
 
-        // Exibe todos os jogadores na inicial
         mostrarJogadores(todosJogadores);
 
-        // Configura pesquisa e alternância de gênero
-        pesquisaJogadores(todosJogadores);
-        rotaGenero(jogadoresMasculinos, jogadorasFemininas);
-
+        rotaGenero();
     } catch (err) {
         console.error("Erro ao carregar jogadores:", err);
     }

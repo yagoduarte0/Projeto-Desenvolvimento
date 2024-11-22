@@ -81,6 +81,7 @@ header #logout:hover {
     margin: 0 auto;
     padding: 10px;
     box-sizing: border-box;
+    font-family: "Gothic A1", sans-serif;
 }
 
 #container > #atletas {
@@ -113,6 +114,7 @@ header #logout:hover {
 #container article h3 {
     font-size: 13px;
     margin: 10px 0;
+    font-family: "Gothic A1", sans-serif;
 }
 
 #container > article button {
@@ -127,45 +129,71 @@ header #logout:hover {
     font-family: "Gothic A1", sans-serif;
 }
 
-#dropdown-container {
-    position: relative;
-    display: inline-block;
+#dropdown label {
+    color: #333333;
+    font-family: "Gothic A1", sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-#dropdown-button {
-    padding: 0.5rem 1rem;
-    background-color: #000;
-    color: #fff;
+#menu-dropdown {
+    background: linear-gradient(100deg, #000000, #ffffff);
+    color: #ffffff;
     border: none;
-    cursor: pointer;
+    border-radius: 25px;
+    padding: 0.6rem 1.2rem;
     font-size: 1rem;
-}
-
-#dropdown-menu {
-    position: absolute;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    z-index: 1000;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#dropdown-menu li button {
-    padding: 0.5rem 1rem;
-    background-color: transparent;
-    color: #000;
-    border: none;
-    width: 100%;
-    text-align: left;
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    font-weight: bold;
+    text-align: center;
 }
 
-#dropdown-menu li button:hover {
-    background-color: #ddd;
+#menu-dropdown:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
+
+#menu-dropdown:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #ffffff, 0px 0px 15px rgba(0, 0, 0, 0.7);
+}
+
+#menu-dropdown option {
+    background-color: #ffffff;
+    color: #333333;
+    font-weight: bold;
+}
+
+#menu-dropdown option:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#dropdown {
+    display: none;
+    margin-top: 1rem;
+}
+  
+  @media (max-width: 768px) {
+    #jogadores-lista {
+      display: none;
+    }
+  
+    #dropdown {
+      display: block;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    #dropdown {
+      display: none;
+    }
+  }
 
 @media (max-width: 768px) {
     #container {
@@ -208,6 +236,29 @@ header #logout:hover {
         gap: 1rem;
         max-width: 100%;
         margin: 0 auto;
+    }
+}
+
+@media screen and (max-height: 768px) {
+    #detalhes-body {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #detalhes-body img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #detalhes-body h3,
+    #detalhes-body p {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    #detalhes-body button {
+        width: 100%;
+        margin: 5px 0;
     }
 }
 
@@ -358,6 +409,7 @@ header #logout:hover {
     background-color: #000000;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 768px;
 }
 
 .info-jogador {
