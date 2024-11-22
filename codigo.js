@@ -1,6 +1,7 @@
 const url = "https://botafogo-atletas.mange.li/2024-1/";
+const fem = "https://botafogo-atletas.mange.li/2024-1/feminino/";
+const todes = "https://botafogo-atletas.mange.li/2024-1/all/";
 
-// Variáveis de elementos do DOM
 const container = document.getElementById("container");
 const jogadoresSection = document.getElementById("jogadores");
 const loginForm = document.getElementById("login-form");
@@ -94,21 +95,37 @@ const pesquisaJogadores = (todosJogadores) => {
 };
 
 const rotaGenero = (jogadoresMasculinos, jogadorasFemininas) => {
-    todos.onclick = () => {
-        container.innerHTML = "";
-        const todosJogadores = [...jogadoresMasculinos, ...jogadorasFemininas];
-        mostrarJogadores(todosJogadores);
+    todos.onclick = async () => {
+        try {
+            const todosJogadores = await pega_json(`${url}all`);
+            container.innerHTML = "";
+            mostrarJogadores(todosJogadores);
+        } catch (err) {
+            console.error("Erro ao carregar todos os jogadores:", err);
+            container.innerHTML = '<p>Erro ao carregar jogadores.</p>';
+        }
     };
-
-    masculino.onclick = () => {
-        container.innerHTML = "";
-        mostrarJogadores(jogadoresMasculinos);
+    masculino.onclick = async () => {
+        try {
+            const jogadoresMasculinos = await pega_json(`${url}masculino`);
+            container.innerHTML = "";
+            mostrarJogadores(jogadoresMasculinos);
+        } catch (err) {
+            console.error("Erro ao carregar jogadores masculinos:", err);
+            container.innerHTML = '<p>Erro ao carregar jogadores.</p>';
+        }
     };
-
-    feminino.onclick = () => {
-        container.innerHTML = "";
-        mostrarJogadores(jogadorasFemininas);
+    feminino.onclick = async () => {
+        try {
+            const jogadorasFemininas = await pega_json(`${url}feminino`);
+            container.innerHTML = "";
+            mostrarJogadores(jogadorasFemininas);
+        } catch (err) {
+            console.error("Erro ao carregar jogadoras femininas:", err);
+            container.innerHTML = '<p>Erro ao carregar jogadores.</p>';
+        }
     };
+    
 };
 
 const verificaLogin = () => {
@@ -151,17 +168,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     verificaLogin();
 
     try {
+        // Carrega todas as listas
+        const todosJogadores = await pega_json(`${url}all`);
         const jogadoresMasculinos = await pega_json(`${url}masculino`);
         const jogadorasFemininas = await pega_json(`${url}feminino`);
 
-        mostrarJogadores([...jogadoresMasculinos, ...jogadorasFemininas]);
-        pesquisaJogadores([...jogadoresMasculinos, ...jogadorasFemininas]);
+        // Exibe todos os jogadores na inicial
+        mostrarJogadores(todosJogadores);
 
+        // Configura pesquisa e alternância de gênero
+        pesquisaJogadores(todosJogadores);
         rotaGenero(jogadoresMasculinos, jogadorasFemininas);
 
     } catch (err) {
         console.error("Erro ao carregar jogadores:", err);
     }
 });
+
 
 document.getElementById("botao").onclick = manipulaBotao;
