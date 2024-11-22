@@ -10,3 +10,7 @@ Aluno de Engenharia de Software - Ibmec
 Matricula - 202402185314
 
 o site esa nessa url do github pages - https://yagoduarte0.github.io/Projeto-Desenvolvimento/
+
+eu iniciei o trabalho em outro repositorio, pois esqueci que tinha que fazer o deploy, os commits que eu fiz estao nesse link
+segue o link para acessar o inicio do trabalho - https://github.com/yagoduarte0/Desenvolvimento-Web/tree/main/AP2-BOTAFOGO-WEB
+esse seria so a parte em que eu parei o trabalho e coloquei em outro repositorio, para nao parecer que eu colei de alguem!!!
